@@ -1,6 +1,6 @@
 import { FibonacciHeap } from "@tyriar/fibonacci-heap";
-import { getNeighbours } from "../../components/gridFuncs";
-import { removeFromArray } from "../../components/util";
+
+import { removeFromArray, getNeighbours } from "../../components/util/util";
 ///todo - move to a folder -- globalFuncs
 
 const h = (a, b) => {

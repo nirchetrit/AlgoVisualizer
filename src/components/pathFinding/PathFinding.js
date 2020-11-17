@@ -4,6 +4,7 @@ import GridOptions from './GridOptions'
 import { generateNodes } from '../../gridFuncs'
 import DropDown from '../dropDown/DropDown';
 import dijkstra from '../../algorithms/pathFinding/dijkstra'
+import aStar from '../../algorithms/pathFinding/aStar'
 
 
 
@@ -88,7 +89,7 @@ const PathFinding = () => {
         return path;
     };
     const onSolveButtonClick = () => {
-        var [dist, prev, visitedNodesByOrder] = [];
+        let [dist, prev, visitedNodesByOrder] = [];
         switch (algoSelected.value) {
             case "dijkstra":
                 /////TODO FIX what happens if someone changes the form without saving it?
@@ -102,33 +103,32 @@ const PathFinding = () => {
             case "bfs":
                 alert("not yet shlomi");
                 break;
-            //   case "a*":
-            //     [prev, visitedNodesByOrder] = aStar(
-            //       nodes,
-            //       nodes[config.startRow][config.startCol],
-            //       nodes[config.finishRow][config.finishCol]
-            //     );
-            //     break;
+            case "a*":
+                [prev, visitedNodesByOrder] = aStar(
+                    nodes,
+                    nodes[config.startRow][config.startCol],
+                    nodes[config.finishRow][config.finishCol]
+                );
+                break;
             default:
                 alert("select something");
         }
         let path = getSolutionPath(prev, nodes[config.finishRow][config.finishCol]);
-        colorVisitedNodes(
-            visitedNodesByOrder,
-            path,
-            100.5
-        ); //time
+        colorVisitedNodes(visitedNodesByOrder, path, 100.5); //time
     };
     return (
         <div className="pathfinding">
             <GridOptions
-                onSubmit={setConfig}
+                onSubmit={(data) => {
+                    console.log(data);
+                    setConfig(data)
+                }}
                 onReset={resetGrid}
                 header={'select the grid options'}
-                height={config.height}
-                width={config.width}
-                startRow={config.startRow}
-                startCol={config.startCol}
+                height={{ val: config.height }}
+                width={{ val: config.width }}
+                startRow={{ val: config.startRow }}
+                startCol={{ val: config.startCol }}
                 finishCol={config.finishCol}
                 finishRow={config.finishRow}
             ></GridOptions>
