@@ -6,8 +6,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@tyriar/fibonacci-heap": "^2.0.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^6.10.1",
     "react-scripts": "3.4.4"
   },
   "scripts": {

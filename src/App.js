@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Route from './components/router/Route'
+import Header from './components/header/Header'
+import PathFinding from './components/pathFinding/PathFinding'
+import "./App.css";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header></Header>
+
+      {/* TODO REACT ROUTER !! */}
+      <div className="body">
+        <Route path="/">
+          <div className="ui container">
+            <PathFinding></PathFinding>
+          </div>
+        </Route>
+
+        <Route path="/sortingvisualizer">
+          <div className="ui container">
+            <h1>sort</h1>
+            {/* <SortingVisualizer></SortingVisualizer> */}
+          </div>
+        </Route>
+      </div>
     </div>
   );
 }

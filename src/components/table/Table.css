@@ -1,0 +1,18 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .table .table-row:nth-child(2n) {
+    margin-top: -1px;
+    margin-bottom: -1px;
+  }
+  .table-row {
+    display: flex;
+    flex-direction: row;
+  }
+  .table-row .node:nth-child(2n) {
+    margin-left: -1px;
+    margin-right: -1px;
+  }
+  
