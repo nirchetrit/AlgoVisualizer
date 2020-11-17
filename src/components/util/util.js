@@ -36,10 +36,4 @@ const getNeighbours = (node, grid) => {
 
     return neighbours;
 };
-module.exports = {
-    removeFromArray,
-    swapElemsByIndex,
-    timeOut,
-    getNeighbours
-};
-//test
+export { removeFromArray, getNeighbours, swapElemsByIndex, timeOut }
