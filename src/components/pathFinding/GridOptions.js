@@ -11,7 +11,7 @@ export default function GridOptions({ header, height, width, startCol, startRow,
     });
     const Reset = () => {
         reset();
-        onReset()
+        onReset();
     }
 
     return (
