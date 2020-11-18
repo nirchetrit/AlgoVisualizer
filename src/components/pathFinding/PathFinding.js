@@ -23,6 +23,11 @@ const algoOptions = [
     { label: "A*", value: "a*" },
     { label: "BFS", value: "bfs" },
 ];
+const solverSpeedOptions = [
+    { label: 'ultra-fast', value: 0.1 },
+    { label: 'fast', value: 1 },
+    { label: 'slow', value: 100 }
+]
 
 
 /////////// Component
@@ -31,6 +36,7 @@ const PathFinding = () => {
     const [algoSelected, setAlgoSelected] = useState(algoOptions[0]);
     const [nodes, setNodes] = useState([]);
     const [config, setConfig] = useState(deafultConfig);
+    const solverSpeed = useRef(solverSpeedOptions[0]);
     /////////////////----states----///////////////////
 
 
@@ -50,6 +56,7 @@ const PathFinding = () => {
                 });
             })
         );
+
     };
     //componentDidMount
     useEffect(() => {
@@ -62,13 +69,15 @@ const PathFinding = () => {
 
 
 
-    const colorVisitedNodes = async (visitedNodesByOrder, prev, ms) => {
+    const colorVisitedNodes = async (visitedNodesByOrder, prev) => {
         for (let i = 0; i < visitedNodesByOrder.length; i++) {
-            await new Promise((r) => setTimeout(r, ms));
+            console.log(solverSpeed.current.value);
+
+            await new Promise((r) => setTimeout(r, solverSpeed.current.value));
             editNode({ ...visitedNodesByOrder[i], isVisited: true });
         }
         for (let i = 0; i < visitedNodesByOrder.length; i++) {
-            await new Promise((r) => setTimeout(r, ms));
+            await new Promise((r) => setTimeout(r, solverSpeed.current.value));
             let node = visitedNodesByOrder[i];
             if (prev.includes(node)) {
                 editNode({ ...node, isSolution: true });
@@ -89,16 +98,14 @@ const PathFinding = () => {
         return path;
     };
     const onSolveButtonClick = () => {
-        let [dist, prev, visitedNodesByOrder] = [];
+        let [dist, prev, visitedNodesByOrder] = [[], [], []];
         switch (algoSelected.value) {
             case "dijkstra":
-                /////TODO FIX what happens if someone changes the form without saving it?
                 [dist, prev, visitedNodesByOrder] = dijkstra(
                     nodes,
                     nodes[config.startRow][config.startCol],
                     nodes[config.finishRow][config.finishCol]
-                ); //time
-                console.log('solved');
+                );
                 break;
             case "bfs":
                 alert("not yet shlomi");
@@ -114,27 +121,35 @@ const PathFinding = () => {
                 alert("select something");
         }
         let path = getSolutionPath(prev, nodes[config.finishRow][config.finishCol]);
-        colorVisitedNodes(visitedNodesByOrder, path, 100.5); //time
+        colorVisitedNodes(visitedNodesByOrder, path); //time
     };
+    const addRandomWeights = () => {
+        let nodesWithRandomWeights = [...nodes];
+        nodesWithRandomWeights.forEach(row => {
+            row.forEach(node => {
+                node.weight = Math.floor(Math.random() * 100)
+            })
+        })
+        setNodes(nodesWithRandomWeights)
+    }
+
     return (
         <div className="pathfinding">
             <GridOptions
-                onSubmit={(data) => {
-                    console.log(data);
-                    setConfig(data)
-                }}
+                onSubmit={setConfig}
                 onReset={resetGrid}
                 header={'select the grid options'}
-                height={{ val: config.height }}
-                width={{ val: config.width }}
-                startRow={{ val: config.startRow }}
-                startCol={{ val: config.startCol }}
+                height={config.height}
+                width={config.width}
+                startRow={config.startRow}
+                startCol={config.startCol}
                 finishCol={config.finishCol}
                 finishRow={config.finishRow}
             ></GridOptions>
             <DropDown label={"select algo"} options={algoOptions} selected={algoSelected} onSelectedChange={setAlgoSelected}></DropDown>
+            <DropDown label={"select solving speed"} options={solverSpeedOptions} selected={solverSpeed.current} onSelectedChange={v => { solverSpeed.current = v }}></DropDown>
             <button className='ui button primary' onClick={onSolveButtonClick} >Solve</button>
-            <button className='ui button'>Random Weights</button>
+            <button className='ui button' onClick={addRandomWeights}>Random Weights</button>
             <Table rows={nodes} onNodeClick={toggleWall}></Table>
         </div>
     );

@@ -14,21 +14,21 @@ export default function GridOptions({ header, height, width, startCol, startRow,
             <div className='two fields'>
                 <div className='field'>
                     <label>height</label>
-                    <input type="number" defaultValue={height.val} placeholder="height" name="height" ref={register({ required: true })} />
+                    <input type="number" defaultValue={height} placeholder="height" name="height" ref={register({ required: true })} />
                 </div>
                 <div className='field'>
                     <label>width</label>
-                    <input type="number" defaultValue={width.val} placeholder="width" name="width" ref={register({ required: true })} />
+                    <input type="number" defaultValue={width} placeholder="width" name="width" ref={register({ required: true })} />
                 </div>
             </div>
             <div className='two fields'>
                 <div className='field'>
                     <label>startCol</label>
-                    <input type="number" defaultValue={startCol.val} placeholder="startCol" name="startCol" ref={register({ required: true })} />
+                    <input type="number" defaultValue={startCol} placeholder="startCol" name="startCol" ref={register({ required: true })} />
                 </div>
                 <div className='field'>
                     <label>startRow</label>
-                    <input type="number" defaultValue={startRow.val} placeholder="startRow" name="startRow" ref={register({ required: true })} />
+                    <input type="number" defaultValue={startRow} placeholder="startRow" name="startRow" ref={register({ required: true })} />
                 </div>
             </div>
             <div className='two fields'>
