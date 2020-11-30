@@ -39,7 +39,7 @@ const PathFinding = () => {
   const [selectedSolvingSpeed, setSelectedSolvingSpeed] = useState(
     solverSpeedOptions[0]
   );
-  const solverSpeed = useRef(solverSpeedOptions[0]);
+  const solverSpeed = useRef(selectedSolvingSpeed);
   /////////////////----states----///////////////////
 
   const resetGrid = () => {
@@ -63,6 +63,9 @@ const PathFinding = () => {
   useEffect(() => {
     setNodes(generateNodes(deafultConfig));
   }, []);
+  useEffect(() => {
+    solverSpeed.current = selectedSolvingSpeed;
+  }, [selectedSolvingSpeed]);
 
   useEffect(() => {
     setNodes(generateNodes(config));
@@ -142,7 +145,12 @@ const PathFinding = () => {
         onSelectedChange={setAlgoSelected}
       ></DropDown>
       {/* TODO FIX - because its not a state - when selecting a solving speed its not rendering */}
-      {/* <DropDown label={"select solving speed"} options={solverSpeedOptions} selected={selectedSolvingSpeed} onSelectedChange={setSelectedSolvingSpeed}></DropDown> */}
+      <DropDown
+        label={"select solving speed"}
+        options={solverSpeedOptions}
+        selected={selectedSolvingSpeed}
+        onSelectedChange={setSelectedSolvingSpeed}
+      ></DropDown>
       <button className="ui button primary" onClick={onSolveButtonClick}>
         Solve
       </button>
