@@ -6,8 +6,9 @@ import DropDown from "../dropDown/DropDown";
 import dijkstra from "../../algorithms/pathFinding/dijkstra";
 import aStar from "../../algorithms/pathFinding/aStar";
 import { timeOut } from "../util/util";
+import "./PathFinding.css";
 
-const useForceRerender = () => useReducer((state) => !state, false)[1];
+///TODO - ADD BFS !!
 
 ////Statics
 const deafultConfig = {
@@ -126,36 +127,38 @@ const PathFinding = () => {
 
   return (
     <div className="pathfinding">
-      <GridOptions
-        onSubmit={setConfig}
-        onReset={resetGrid}
-        header={"select the grid options"}
-        height={config.height}
-        width={config.width}
-        startRow={config.startRow}
-        startCol={config.startCol}
-        finishCol={config.finishCol}
-        finishRow={config.finishRow}
-        randomWeights={config.randomWeights}
-      ></GridOptions>
-      <DropDown
-        label={"select algo"}
-        options={algoOptions}
-        selected={algoSelected}
-        onSelectedChange={setAlgoSelected}
-      ></DropDown>
-      {/* TODO FIX - because its not a state - when selecting a solving speed its not rendering */}
-      <DropDown
-        label={"select solving speed"}
-        options={solverSpeedOptions}
-        selected={selectedSolvingSpeed}
-        onSelectedChange={setSelectedSolvingSpeed}
-      ></DropDown>
-      <button className="ui button primary" onClick={onSolveButtonClick}>
-        Solve
-      </button>
-
-      <Table rows={nodes} onNodeClick={toggleWall}></Table>
+      <div className="left-column">
+        <GridOptions
+          onSubmit={setConfig}
+          onReset={resetGrid}
+          header={"select the grid options"}
+          height={config.height}
+          width={config.width}
+          startRow={config.startRow}
+          startCol={config.startCol}
+          finishCol={config.finishCol}
+          finishRow={config.finishRow}
+          randomWeights={config.randomWeights}
+        ></GridOptions>
+        <DropDown
+          label={"select algo"}
+          options={algoOptions}
+          selected={algoSelected}
+          onSelectedChange={setAlgoSelected}
+        ></DropDown>
+        <DropDown
+          label={"select solving speed"}
+          options={solverSpeedOptions}
+          selected={selectedSolvingSpeed}
+          onSelectedChange={setSelectedSolvingSpeed}
+        ></DropDown>
+        <button className="ui button primary" onClick={onSolveButtonClick}>
+          Solve
+        </button>
+      </div>
+      <div className="right-column">
+        <Table rows={nodes} onNodeClick={toggleWall}></Table>
+      </div>
     </div>
   );
 };

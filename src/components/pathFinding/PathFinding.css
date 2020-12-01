@@ -1,0 +1,7 @@
+.pathfinding {
+  display: grid;
+  grid-template-columns: 25% auto;
+}
+.left-column > button {
+  width: 100%;
+}

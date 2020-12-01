@@ -1,25 +1,24 @@
 .node {
-    border: 1px solid grey;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .node.start {
-    background-color: green !important;
-  }
-  .node.finish {
-    background-color: red !important;
-  }
-  .node.wall {
-    background-color: grey;
-  }
-  .node.visited {
-    background-color: orange;
-  }
-  .node.solution {
-    background-color: blue;
-  }
-  
+  border: 1px solid grey;
+  width: stretch;
+  height: stretch;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.node.start {
+  background-color: green !important;
+}
+.node.finish {
+  background-color: red !important;
+}
+.node.wall {
+  background-color: grey;
+}
+.node.visited {
+  background-color: orange;
+}
+.node.solution {
+  background-color: blue;
+}
