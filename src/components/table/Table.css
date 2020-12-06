@@ -1,11 +1,7 @@
 .table {
-  /* display: flex;
-    flex-direction: column;
-    margin-top: 50px; */
-  display: flex;
-  flex-direction: column;
+  display: grid;
   width: 100%;
-  height: 50vh;
+  height: 100%;
 }
 .table .table-row:nth-child(2n) {
   margin-top: -1px;

@@ -1,12 +1,12 @@
 .node {
   border: 1px solid grey;
   width: stretch;
-  height: stretch;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .node.start {
   background-color: green !important;
 }

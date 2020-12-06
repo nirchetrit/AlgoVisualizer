@@ -52,7 +52,31 @@ const getNeighbours = (node, grid) => {
   return neighbours;
 };
 
+const getGridWithWalls = (startNode, finishNode, grid) => {
+  let visited = [];
+  let newGrid = [...grid];
+  const recAddWallsToNeighbours = (node, grid, visited) => {
+    if (!visited[node.index]) {
+      visited[node.index] = true;
+      getNeighbours(node, grid).forEach((neighbour) => {
+        neighbour.isWall = !node.isWall;
+        recAddWallsToNeighbours(neighbour, newGrid, visited);
+      });
+    }
+  };
+  recAddWallsToNeighbours(
+    newGrid[startNode.row][startNode.col],
+    newGrid,
+    visited
+  );
+  newGrid[finishNode.row][finishNode.col].isWall = false;
+  return newGrid;
+};
+//newGrid[startNode.row][startNode.col]
+//newGrid[startNode.col][startNode.row]
+
 module.exports = {
   generateNodes,
   getNeighbours,
+  getGridWithWalls,
 };

@@ -46,7 +46,8 @@ const aStar = (gridc, startNode, finishNode) => {
     for (let i = 0; i < neighbours.length; i++) {
       let neighbour = neighbours[i];
       if (!neighbour.isWall) {
-        let tentative_gScore = gScore[current.value.index] + 1;
+        let tentative_gScore =
+          gScore[current.value.index] + 1 + neighbour.weight;
         if (tentative_gScore < gScore[neighbour.index]) {
           prev[neighbour.index] = current.value.index;
           gScore[neighbour.index] = tentative_gScore;

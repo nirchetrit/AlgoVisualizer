@@ -1,0 +1,5 @@
+.sorting-visualizer {
+  display: grid;
+  grid-template-columns: 25% auto;
+  height: 90vh;
+}

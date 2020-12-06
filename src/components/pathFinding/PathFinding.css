@@ -1,7 +1,15 @@
 .pathfinding {
   display: grid;
   grid-template-columns: 25% auto;
+  height: 90vh;
 }
 .left-column > button {
   width: 100%;
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 100%; */
+  /* background-color: black; */
 }

@@ -1,9 +1,10 @@
-import React from 'react';
-import Route from './components/router/Route'
-import Header from './components/header/Header'
-import PathFinding from './components/pathFinding/PathFinding'
-import "./App.css";
+import React from "react";
+import Route from "./components/router/Route";
+import Header from "./components/header/Header";
+import PathFinding from "./components/pathFinding/PathFinding";
+import SortingVisualizer from "./components/sortingVisualizer/SortingVisualizer";
 
+import "./App.css";
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
 
         <Route path="/sortingvisualizer">
           <div className="ui container">
-            <h1>sort</h1>
-            {/* <SortingVisualizer></SortingVisualizer> */}
+            {/* <h1>sort</h1> */}
+            <SortingVisualizer></SortingVisualizer>
           </div>
         </Route>
       </div>

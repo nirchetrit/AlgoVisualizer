@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useReducer } from "react";
 import Table from "../table/Table";
 import GridOptions from "./GridOptions";
-import { generateNodes } from "../../gridFuncs";
+import { generateNodes, getGridWithWalls } from "../../gridFuncs";
 import DropDown from "../dropDown/DropDown";
 import dijkstra from "../../algorithms/pathFinding/dijkstra";
 import aStar from "../../algorithms/pathFinding/aStar";
@@ -12,12 +12,12 @@ import "./PathFinding.css";
 
 ////Statics
 const deafultConfig = {
-  width: 5,
-  height: 5,
+  width: 20,
+  height: 20,
   startRow: 0,
   startCol: 0,
-  finishRow: 4,
-  finishCol: 4,
+  finishRow: 19,
+  finishCol: 19,
   randomWeights: false,
 };
 const algoOptions = [
@@ -48,7 +48,8 @@ const PathFinding = () => {
     setNodes(generateNodes(deafultConfig));
   };
   const toggleWall = (node) => {
-    editNode({ ...node, isWall: !node.isWall });
+    if (!node.isStart && !node.isFinish)
+      editNode({ ...node, isWall: !node.isWall });
   };
   const editNode = (node) => {
     setNodes((prevNodes) =>
@@ -122,8 +123,11 @@ const PathFinding = () => {
         alert("select something");
     }
     let path = getSolutionPath(prev, nodes[config.finishRow][config.finishCol]);
-    colorVisitedNodes(visitedNodesByOrder, path); //time
+    colorVisitedNodes(visitedNodesByOrder, path);
   };
+  // const generateMaze = (startNode, finishNode, grid) => {
+  //   setNodes(getGridWithWalls(startNode, finishNode, grid));
+  // };
 
   return (
     <div className="pathfinding">
