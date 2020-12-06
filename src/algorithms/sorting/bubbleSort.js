@@ -16,5 +16,4 @@ const bubbleSort = (defaultArr) => {
   }
   return [arr, solution];
 };
-module.exports = { bubbleSort };
-
+export default bubbleSort;

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DropDown from "../dropDown/DropDown";
 import BarGraph from "../bars/BarGraph";
-import { bubbleSort } from "../../algorithms/sorting/bubbleSort";
+import bubbleSort from "../../algorithms/sorting/bubbleSort";
 import { timeOut } from "../util/util";
 import "./SortingVisualizer.css";
 const generateBars = (count, range) => {
