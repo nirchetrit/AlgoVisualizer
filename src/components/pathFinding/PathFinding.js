@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useReducer } from "react";
 import Table from "../table/Table";
 import GridOptions from "./GridOptions";
-import { generateNodes, getGridWithWalls } from "../../gridFuncs";
+import generateNodes from "../../gridFuncs";
 import DropDown from "../dropDown/DropDown";
 import dijkstra from "../../algorithms/pathFinding/dijkstra";
 import aStar from "../../algorithms/pathFinding/aStar";

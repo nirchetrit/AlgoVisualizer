@@ -75,8 +75,9 @@ const getGridWithWalls = (startNode, finishNode, grid) => {
 //newGrid[startNode.row][startNode.col]
 //newGrid[startNode.col][startNode.row]
 
-module.exports = {
-  generateNodes,
-  getNeighbours,
-  getGridWithWalls,
-};
+// module.exports = {
+//   generateNodes,
+//   getNeighbours,
+//   getGridWithWalls,
+// };
+export default generateNodes;
