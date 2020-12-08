@@ -1,6 +1,6 @@
 import React from "react";
 import "./Node.css";
-const Node = ({ node, onNodeClick }) => {
+const Node = ({ node, onNodeClick, onNodeHover }) => {
   //   console.log("asdokj", node);
   const isStart = node.isStart ? "start" : "";
   const isFinish = node.isFinish ? "finish" : "";
@@ -9,7 +9,11 @@ const Node = ({ node, onNodeClick }) => {
   const isVisited = node.isVisited ? "visited" : "";
   const className = `node ${isStart} ${isFinish} ${isWall} ${isVisited} ${isSolution}`;
   return (
-    <div className={className} onClick={() => onNodeClick(node)}>
+    <div
+      className={className}
+      onClick={() => onNodeClick(node)}
+      onMouseEnter={() => onNodeHover(node)}
+    >
       {node.weight}
     </div>
   );

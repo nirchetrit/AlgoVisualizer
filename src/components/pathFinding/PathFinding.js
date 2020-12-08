@@ -35,6 +35,7 @@ const solverSpeedOptions = [
 const PathFinding = () => {
   /////////////////----states----///////////////////
   const [algoSelected, setAlgoSelected] = useState(algoOptions[0]);
+  const [gridIsClicked, setGridIsClicked] = useState(false);
   const [nodes, setNodes] = useState([]);
   const [config, setConfig] = useState(deafultConfig);
   const [selectedSolvingSpeed, setSelectedSolvingSpeed] = useState(
@@ -128,7 +129,6 @@ const PathFinding = () => {
   // const generateMaze = (startNode, finishNode, grid) => {
   //   setNodes(getGridWithWalls(startNode, finishNode, grid));
   // };
-
   return (
     <div className="pathfinding">
       <div className="left-column">
@@ -161,7 +161,15 @@ const PathFinding = () => {
         </button>
       </div>
       <div className="right-column">
-        <Table rows={nodes} onNodeClick={toggleWall}></Table>
+        <Table
+          rows={nodes}
+          onNodeClick={toggleWall}
+          onNodeHover={(node) => {
+            if (gridIsClicked) toggleWall(node);
+          }}
+          onMouseDown={() => setGridIsClicked(true)}
+          onMouseUp={() => setGridIsClicked(false)}
+        ></Table>
       </div>
     </div>
   );
